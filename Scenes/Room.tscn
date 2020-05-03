@@ -10,14 +10,17 @@ anchor_bottom = 1.0
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.22766
+margin_right = 1.22766
 texture = ExtResource( 1 )
 
 [node name="FloorArea" type="Area2D" parent="TextureRect"]
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/FloorArea"]
+visible = false
 position = Vector2( 3.09094, 825.171 )
 polygon = PoolVector2Array( -1.65283, -3.00854, 1914.69, -160.643, 1914.69, 253.534, -7.83447, 250.443 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 399.45, 738.983 )
+position = Vector2( 334.38, 865.44 )
