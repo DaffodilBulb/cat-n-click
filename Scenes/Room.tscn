@@ -1,20 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://GFX/Backgrounds/BGRoom.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GFX/Backgrounds/BGRoom-2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/NaviCat.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 
-[node name="Room" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 1680.22, 858.93, 1849, 662.025, 1916.58, 661.895, 1920.48, 1082.67, 1653.85, 906.399, -2.21307, 1078.77, 8.46216, 821.708, 1400.68, 960.899, 1543.09, 760.478, 1279.38, 804.43, 1282.89, 850.14 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 3, 5, 6, 7 ), PoolIntArray( 1, 0, 8 ), PoolIntArray( 6, 1, 8, 9 ), PoolIntArray( 6, 9, 10 ), PoolIntArray( 7, 4, 3 ), PoolIntArray( 7, 6, 10 ) ]
+outlines = [ PoolVector2Array( 8.46216, 821.708, 1849, 662.025, 1916.58, 661.895, 1920.48, 1082.67, -2.21307, 1078.77 ), PoolVector2Array( 1282.89, 850.14, 1400.68, 960.899, 1653.85, 906.399, 1680.22, 858.93, 1543.09, 760.478, 1279.38, 804.43 ) ]
+
+[node name="Room" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.22766
-margin_right = 1.22766
+margin_left = 6.50195
+margin_right = 1926.5
+margin_bottom = 1080.0
 texture = ExtResource( 1 )
 
 [node name="FloorArea" type="Area2D" parent="TextureRect"]
+editor/display_folded = true
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/FloorArea"]
@@ -22,5 +29,13 @@ visible = false
 position = Vector2( 3.09094, 825.171 )
 polygon = PoolVector2Array( -1.65283, -3.00854, 1914.69, -160.643, 1914.69, 253.534, -7.83447, 250.443 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 334.38, 865.44 )
+[node name="Navigation2D" type="Navigation2D" parent="."]
+position = Vector2( 1.22766, 0 )
+script = ExtResource( 2 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( 1.948, 0 )
+navpoly = SubResource( 1 )
+
+[node name="Player" parent="Navigation2D" instance=ExtResource( 3 )]
+position = Vector2( 335.67, 865.44 )
